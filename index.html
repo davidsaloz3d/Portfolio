@@ -485,7 +485,8 @@
                     <h2 id="demo" class="titulo fs-1 mb-3">DemoReel</h2>
 
                     <!-- Vídeo autoplay miniatura -->
-                    <video id="demoPreview" class="w-100 rounded shadow miniatura" autoplay muted loop playsinline>
+                    <video id="demoPreview" class="w-100 rounded shadow miniatura" preload="none" autoplay muted loop
+                        playsinline data-bs-toggle="modal" data-bs-target="#demoModal" style="cursor:pointer;">
                         <source src="Demoreel/DemoReel3.mp4" type="video/mp4">
                         Tu navegador no soporta la etiqueta de video.
                     </video>
@@ -493,12 +494,10 @@
 
                 <!-- Modal -->
                 <div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content bg-dark">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                        <div class="modal-content bg-dark border-0">
                             <div class="modal-body p-0">
-                                <video id="demoFull" class="w-100" controls>
-                                    <source src="Demoreel/DemoReel3.mp4" type="video/mp4">
-                                </video>
+                                <div class="ratio ratio-16x9" id="demoVideoContainer"></div>
                             </div>
                         </div>
                     </div>
@@ -912,16 +911,15 @@
             <div class="row g-4">
                 <!-- Video 1 -->
                 <div class="col-12 col-lg-6">
-                    <div class="video-hover-container">
+                    <div class="video-hover-container" data-bs-toggle="modal" data-bs-target="#modalAnim"
+                        data-video="7FsF5J8IZtA">
                         <h5 class="titulo text-center mt-4 mb-4 d-block d-lg-none">Barca en el mar</h5>
                         <video id="video1" class="w-100 rounded shadow miniatura" autoplay muted loop playsinline
-                            data-bs-toggle="modal" data-bs-target="#modalAnim"
-                            onclick="mostrarVideo('Animacion/Faro.mp4')">
+                            preload="none">
                             <source src="Animacion/Faro.mp4" type="video/mp4">
                             Tu navegador no soporta la etiqueta de video.
                         </video>
-                        <div class="overlay" data-bs-toggle="modal" data-bs-target="#modalAnim"
-                            onclick="mostrarVideo('Animacion/Faro.mp4')">
+                        <div class="overlay">
                             <p class="fw-bold">Barca en el mar</p>
                         </div>
                     </div>
@@ -929,16 +927,15 @@
 
                 <!-- Video 2 -->
                 <div class="col-12 col-lg-6">
-                    <div class="video-hover-container">
+                    <div class="video-hover-container" data-bs-toggle="modal" data-bs-target="#modalAnim"
+                        data-video="pYRMv0I3unU">
                         <h5 class="titulo text-center mt-4 mb-4 d-block d-lg-none">Lluvia en el mar</h5>
                         <video id="video2" class="w-100 rounded shadow miniatura" autoplay muted loop playsinline
-                            data-bs-toggle="modal" data-bs-target="#modalAnim"
-                            onclick="mostrarVideo('Animacion/tormenta.mp4')">
+                            preload="none">
                             <source src="Animacion/tormenta.mp4" type="video/mp4">
                             Tu navegador no soporta la etiqueta de video.
                         </video>
-                        <div class="overlay" data-bs-toggle="modal" data-bs-target="#modalAnim"
-                            onclick="mostrarVideo('Animacion/tormenta.mp4')">
+                        <div class="overlay">
                             <p class="fw-bold">Lluvia en el mar</p>
                         </div>
                     </div>
@@ -947,16 +944,15 @@
 
                 <!-- Video  3-->
                 <div class="col-12 col-lg-6">
-                    <div class="video-hover-container">
+                    <div class="video-hover-container" data-bs-toggle="modal" data-bs-target="#modalAnim"
+                        data-video="6SLWTEzYuqg">
                         <h5 class="titulo text-center mt-4 mb-4 d-block d-lg-none">Stranger Things</h5>
                         <video id="video3" class="w-100 rounded shadow miniatura" autoplay muted loop playsinline
-                            data-bs-toggle="modal" data-bs-target="#modalAnim"
-                            onclick="mostrarVideo('Animacion/Stranger.mp4')">
+                            preload="none">
                             <source src="Animacion/Stranger.mp4" type="video/mp4">
                             Tu navegador no soporta la etiqueta de video.
                         </video>
-                        <div class="overlay" data-bs-toggle="modal" data-bs-target="#modalAnim"
-                            onclick="mostrarVideo('Animacion/Stranger.mp4')">
+                        <div class="overlay">
                             <p class="fw-bold">Stranger Things</p>
                         </div>
                     </div>
@@ -964,16 +960,15 @@
 
                 <!-- Video 4 -->
                 <div class="col-12 col-lg-6">
-                    <div class="video-hover-container">
+                    <div class="video-hover-container" data-bs-toggle="modal" data-bs-target="#modalAnim"
+                        data-video="ESB6Wt_9Af4">
                         <h5 class="titulo text-center mt-4 mb-4 d-block d-lg-none">Animática de tráiler</h5>
                         <video id="video4" class="w-100 rounded shadow miniatura" autoplay muted loop playsinline
-                            data-bs-toggle="modal" data-bs-target="#modalAnim"
-                            onclick="mostrarVideo('Animacion/Animática.mp4')">
+                            preload="none">
                             <source src="Animacion/Animática.mp4" type="video/mp4">
                             Tu navegador no soporta la etiqueta de video.
                         </video>
-                        <div class="overlay" data-bs-toggle="modal" data-bs-target="#modalAnim"
-                            onclick="mostrarVideo('Animacion/Animática.mp4')">
+                        <div class="overlay">
                             <p class="fw-bold">Animática de tráiler</p>
                         </div>
                     </div>
@@ -986,11 +981,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content bg-transparent border-0">
                         <div class="modal-body p-0 text-center">
-                            <h2 id="tituloVideo" class="titulo text-center mb-3"></h2>
-                            <video id="AnimAmpliado" class="w-100 rounded shadow" controls>
-                                <source src="" type="video/mp4">
-                                Tu navegador no soporta la etiqueta de video.
-                            </video>
+                            <div class="ratio ratio-16x9" id="animVideoContainer"></div>
                         </div>
                     </div>
                 </div>
@@ -1227,6 +1218,8 @@
         crossorigin="anonymous"></script>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
+
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 
 </html>

@@ -22,11 +22,17 @@ let h5 = document.getElementsByTagName("h5")
 let image = document.getElementById("boton");
 let oscuro = true
 
+//Videos
+const demoModal = document.getElementById('demoModal');
+const demoContainer = document.getElementById('demoVideoContainer');
+const demoURL = "https://www.youtube.com/embed/gORZsIDciPg?autoplay=1&controls=1&rel=0";
 
+const modalAnim = document.getElementById('modalAnim');
+const videoContainer = document.getElementById('animVideoContainer');
 
 
 function color() {
-    
+
     document.body.classList.toggle("dark");
 
     if (oscuro == true) {
@@ -81,19 +87,17 @@ function color() {
 
 
 //DemoReel
-document.getElementById("demoPreview").addEventListener("click", () => {
-    const modal = new bootstrap.Modal(document.getElementById("demoModal"));
-    modal.show();
-
-    // Reinicia el vídeo grande desde el inicio
-    const fullVideo = document.getElementById("demoFull");
-    fullVideo.currentTime = 0;
-    fullVideo.play();
+demoModal.addEventListener('show.bs.modal', () => {
+    demoContainer.innerHTML = `<iframe width="100%" height="100%" 
+                                src="${demoURL}" 
+                                title="Demo Reel" 
+                                frameborder="0" 
+                                allow="autoplay; encrypted-media" 
+                                allowfullscreen></iframe>`;
 });
 
-// Pausar el vídeo cuando se cierre el modal
-document.getElementById("demoModal").addEventListener("hidden.bs.modal", () => {
-    document.getElementById("demoFull").pause();
+demoModal.addEventListener('hidden.bs.modal', () => {
+    demoContainer.innerHTML = ""; // elimina el iframe para parar el audio
 });
 
 
@@ -101,22 +105,21 @@ document.getElementById("demoModal").addEventListener("hidden.bs.modal", () => {
 
 
 //Animacion
-function mostrarVideo(src) {
-    const modalVideo = document.getElementById("AnimAmpliado");
-    const source = modalVideo.querySelector("source");
+modalAnim.addEventListener('show.bs.modal', event => {
+    const trigger = event.relatedTarget.closest('.video-hover-container');
+    const videoID = trigger.getAttribute('data-video');
 
-    // Cambiar video
-    source.src = src;
-    modalVideo.load(); // recargar el nuevo video
-    modalVideo.play(); // iniciar reproducción
-}
+    videoContainer.innerHTML = `
+      <iframe width="100%" height="100%" 
+              src="https://www.youtube.com/embed/${videoID}?autoplay=1&controls=1&rel=0"
+              frameborder="0" 
+              allow="autoplay; encrypted-media" 
+              allowfullscreen></iframe>`;
+  });
 
-// Pausar video al cerrar modal
-document.getElementById('modalAnim').addEventListener('hidden.bs.modal', function () {
-    const modalVideo = document.getElementById("AnimAmpliado");
-    modalVideo.pause();
-    modalVideo.currentTime = 0;
-});
+  modalAnim.addEventListener('hidden.bs.modal', () => {
+    videoContainer.innerHTML = ""; // eliminar iframe = cortar audio
+  });
 
 
 //Videojuegos
